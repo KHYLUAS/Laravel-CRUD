@@ -21,7 +21,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Add New Employee') }}</div>
+                    <div class="card-header bg-dark">{{ __('Add New Employee') }}</div>
 
                     <div class="card-body" style="background-color: #f2f2f2;">
                         <form action="{{url('employee')}}" method="POST">
@@ -45,10 +45,6 @@
                                 <input type="int" class="form-control" name="Phone" value="{{old('Phone')}}" >
                             </div>
 
-
-                           
-
-                           
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
@@ -58,40 +54,46 @@
     </div>
     <!-- /.container -->
 
-    <table class="table table-bordered table-dark">
-  <thead>
-    
-    <tr>
-      <th scope="col">#Id</th>
-      <th scope="col">FirstName</th>
-      <th scope="col">LastName</th>
-      <th scope="col">DateofBirth</th>
-      <th scope="col">Phone</th>
-    </tr>
-    
-  </thead>
-<tbody>
-    @foreach($employee as $item)
-    <tr>
-    <td>{{$item->id}}</td>
-    <td>{{$item->FirstName}}</td>
-    <td>{{$item->LastName}}</td>
-    <td>{{$item->DateofBirth}}</td>
-    <td>{{$item->Phone}}</td>
-
-    <td>
-     <a class="btn btn-info btn-sm" href="{{url('employee/'.$item->id.'/update')}}">
-               
-                 Edit
+    <div class="container-fluid p-5">
+            <div class="d-flex justify-content-end mb-2 mr-3">
+                <a class="fa fa-plus btn-danger btn-sm" href="#">
+                    ADD
                 </a>
-                <a class="btn btn-danger btn-sm" href="{{$item->id}}">
-                  
-                    Delete
-                 </a>
+            </div>        
 
-</td>
-</tr>
-    @endforeach
-</tbody>
-</table>
+            <table class="table table-bordered table-danger text-center">
+                <thead>
+
+                    <tr>
+                      <th scope="col">#Id</th>
+                      <th scope="col">FirstName</th>
+                      <th scope="col">LastName</th>
+                      <th scope="col">DateofBirth</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col">Action</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach($employee as $item)
+                    <tr>
+                        <td>{{$item->id}}</td>
+                        <td>{{$item->FirstName}}</td>
+                        <td>{{$item->LastName}}</td>
+                        <td>{{$item->DateofBirth}}</td>
+                        <td>{{$item->Phone}}</td>
+
+                        <td>
+                            <a class="btn btn-info btn-sm btn-block" href="{{url('employee/'.$item->id.'/update')}}">
+                                     Edit
+                            </a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+    </div>
+
+
+
 @endsection
